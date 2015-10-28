@@ -23,7 +23,7 @@ trait ActivitiesTestSupport extends Matchers {
 
   def beAnActivityWith(idMatcher: Matcher[String]): Matcher[Activity] = idMatcher ^^ {(_: Activity).id aka "id"}
 
-  def haveTypes(types: Seq[ActivityType]): Matcher[ActivityTypes] = be_===(types) ^^ {(_: ActivityTypes).types aka "types"}
+  def haveSameTypes(types: Seq[ActivityType]): Matcher[ActivityTypes] = containTheSameElementsAs(types) ^^ {(_: ActivityTypes).types aka "types"}
 
 
   def now = new DateTime()

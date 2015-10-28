@@ -1,6 +1,7 @@
 package com.wix.hive.model.activities
 
 import com.wix.hive.model.activities.ActivityType._
+import com.wix.hive.model.activities.common.Metadata
 
 /**
  * Created by Uri_Keinan on 10/20/15.
@@ -9,15 +10,15 @@ trait SocialActivityInfo extends ActivityInfo {
 
 }
 
-case class SocialTrackActivityInfo(`type`: SocialType, tracker: Option[SocialTracker], metadata: Option[ItemMetadata]) extends SocialActivityInfo {
+case class SocialTrackActivityInfo(`type`: SocialType, tracker: Option[SocialTracker], metadata: Option[Metadata]) extends SocialActivityInfo {
   override val activityType = `social/track`
 }
 
-case class SocialCommentActivityInfo(text: String, channel: Option[SocialChannel], metadata: Option[Seq[ItemMetadata]], commenter: SocialTracker) extends SocialActivityInfo {
+case class SocialCommentActivityInfo(text: String, channel: Option[SocialChannel], metadata: Option[Seq[Metadata]], commenter: SocialTracker) extends SocialActivityInfo {
   override val activityType = `social/comment`
 }
 
-case class SocialShareUrlActivityInfo(url: String, text: Option[String], channel: SocialChannel, sharer: Option[Name], metadata:Option[Seq[ItemMetadata]]) extends SocialActivityInfo {
+case class SocialShareUrlActivityInfo(url: String, text: Option[String], channel: SocialChannel, sharer: Option[Name], metadata:Option[Seq[Metadata]]) extends SocialActivityInfo {
   override val activityType = `social/share-url`
 }
 

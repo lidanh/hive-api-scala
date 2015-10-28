@@ -2,6 +2,7 @@ package com.wix.hive.model.activities
 
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.wix.hive.model.activities.ActivityType._
+import com.wix.hive.model.activities.common.{Metadata, Media, Variant}
 import com.wix.hive.model.contacts.ContactName
 import org.joda.time.DateTime
 
@@ -33,9 +34,9 @@ case class ContactSubscriptionForm(email: String, name: Option[ContactName], pho
   override val activityType = `contact/subscription-form`
 }
 
-case class Media(thumbnail: String)
 
-case class Variant(title: String, value: Option[String])
+
+
 
 case class Coupon(total: BigDecimal, formattedTotal: Option[String], title: String)
 
@@ -51,24 +52,12 @@ case class CartAddress(firstName: String, lastName: String, email: String, phone
 
 case class CartItem(id: String, sku: Option[String], title: String, quantity: Int, price: BigDecimal, formattedPrice: Option[String],
                     currency: String, productLink: Option[String], weight: BigDecimal, formattedWeight: Option[String],
-                    media: Media, variants: Seq[Variant], categories: Seq[String] = Nil, metadata: Seq[ItemMetadata] = Nil)
+                    media: Media, variants: Seq[Variant], categories: Seq[String] = Nil, metadata: Seq[Metadata] = Nil)
 
-case class ItemMetadata(name: String, value: String)
 
-case class ECommercePurchase(
-                              cartId: String,
-                              storeId: String,
-                              orderId: Option[String],
-                              items: Seq[CartItem],
-                              payment: Payment,
-                              shippingAddress: Option[CartAddress],
-                              billingAddress: Option[CartAddress],
-                              paymentGateway: Option[String],
-                              note: Option[String],
-                              buyerAcceptsMarketing: Option[Boolean]
-                              ) extends ActivityInfo {
-  override val activityType = `e_commerce/purchase`
-}
+
+
+
 
 case class MusicAlbumFan() extends ActivityInfo {
   override val activityType = `music/album-fan`

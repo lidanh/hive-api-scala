@@ -45,7 +45,7 @@ class ActivitiesIT extends HiveSimplicatorIT {
     "get list of all known activity types" in new clientContext {
       expectCustom(app, GetActivityTypes())(aJsonResponseOfActivityTypesNamedAs(ActivityTypes.knownNames.toSeq: _*))
 
-      client.execute(app.instanceId, GetActivityTypes()) must haveTypes(ActivityType.values.toSeq).await
+      client.execute(app.instanceId, GetActivityTypes()) must haveSameTypes(ActivityType.values.toSeq).await
     }
 
     "ignore unknown activity types" in new clientContext {
@@ -53,7 +53,7 @@ class ActivitiesIT extends HiveSimplicatorIT {
         `auth/login`, `auth/register`, "unknown/activity-type-to-hive-client"
       ))
 
-      client.execute(app.instanceId, GetActivityTypes()) must haveTypes(Seq(`auth/login`, `auth/register`)).await
+      client.execute(app.instanceId, GetActivityTypes()) must haveSameTypes(Seq(`auth/login`, `auth/register`)).await
     }
 
     "create activity for contact using contact's user session" in new clientContext {
