@@ -57,7 +57,7 @@ class ActivityInfoSerializationTest extends SpecificationWithJUnit {
       val deserialized = JacksonObjectMapper.mapper.readValue(json, classOf[Activity])
 
       deserialized.activityInfo must beAnInstanceOf[SocialCommentActivityInfo]
-      deserialized.activityInfo.asInstanceOf[SocialCommentActivityInfo].channel must beSome (SocialChannel.TWITTER)
+      deserialized.activityInfo.asInstanceOf[SocialCommentActivityInfo].channel must beSome (SocialChannelWithSite.TWITTER)
 
     }
   }
