@@ -16,7 +16,7 @@ trait SocialActivityInfo extends ActivityInfo {
 
 }
 
-case class SocialTrackActivityInfo(`type`: SocialType, tracker: Option[SocialTracker], metadata: Option[Metadata]) extends SocialActivityInfo {
+case class SocialTrackActivityInfo(@JsonScalaEnumeration(classOf[SocialTypeRef])`type`: Option[SocialType], tracker: Option[SocialTracker], metadata: Option[Metadata]) extends SocialActivityInfo {
   override val activityType = `social/track`
 }
 
@@ -28,6 +28,7 @@ case class SocialShareUrlActivityInfo(url: String, text: Option[String], @JsonSc
   override val activityType = `social/share-url`
 }
 
+class SocialTypeRef extends TypeReference[SocialType.type]
 
 object SocialType extends Enumeration {
   type SocialType = Value
