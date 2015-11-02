@@ -3,7 +3,7 @@ package com.wix.hive.model.activities
 import java.net.URL
 
 import com.wix.hive.model.activities.ActivityType._
-import com.wix.hive.model.activities.common.{Variant, Metadata, Media}
+import com.wix.hive.model.activities.common.Metadata
 
 
 /**
@@ -11,14 +11,14 @@ import com.wix.hive.model.activities.common.{Variant, Metadata, Media}
  */
 trait EcommerceActivityInfo extends ActivityInfo
 
-case class EcommerceAbandon (cartId: String,
+case class ECommerceAbandon (cartId: String,
                              storeId: Int,
                              storeName: Option[String],
                              items: Seq[Item]) extends EcommerceActivityInfo {
   override val activityType = `e_commerce/cart-abandon`
 }
 
-case class EcommerceCartAddItem( cartId: String,
+case class ECommerceCartAddItem( cartId: String,
                                  storeId: Int,
                                  storeName: String,
                                  item: Item) extends EcommerceActivityInfo {
@@ -40,7 +40,7 @@ case class ECommercePurchase(
   override val activityType = `e_commerce/purchase`
 }
 
-case class EcommerceCartCheckout( cartId: String,
+case class ECommerceCartCheckout( cartId: String,
                                   storeId: Int,
                                   storeName: Option[String],
                                   items: Seq[Item]
@@ -48,7 +48,7 @@ case class EcommerceCartCheckout( cartId: String,
   override val activityType = `e_commerce/cart-checkout`
 }
 
-case class EcommerceCartRemoveItem( cartId: String,
+case class ECommerceCartRemoveItem( cartId: String,
                                     storeId: Int,
                                     storeName: String,
                                     item: Item) extends EcommerceActivityInfo {
