@@ -1,7 +1,13 @@
 package com.wix.hive.model.activities
 
-import com.wix.hive.model.activities.ActivityType._
+import com.fasterxml.jackson.core.`type`.TypeReference
+import com.fasterxml.jackson.module.scala.JsonScalaEnumeration
+import com.wix.hive.model.activities.ActivityType.{`social/comment`, `social/share-url`, `social/track`}
+import com.wix.hive.model.activities.SocialChannel.SocialChannel
+import com.wix.hive.model.activities.SocialType.SocialType
 import com.wix.hive.model.activities.common.Metadata
+
+
 
 /**
  * Created by Uri_Keinan on 10/20/15.
@@ -14,26 +20,25 @@ case class SocialTrackActivityInfo(`type`: SocialType, tracker: Option[SocialTra
   override val activityType = `social/track`
 }
 
-case class SocialCommentActivityInfo(text: String, channel: Option[SocialChannel], metadata: Option[Seq[Metadata]], commenter: SocialTracker) extends SocialActivityInfo {
+case class SocialCommentActivityInfo(text: String, @JsonScalaEnumeration(classOf[SocialChannelRef])channel: Option[SocialChannel], metadata: Option[Seq[Metadata]]) extends SocialActivityInfo {
   override val activityType = `social/comment`
 }
 
-case class SocialShareUrlActivityInfo(url: String, text: Option[String], channel: SocialChannel, sharer: Option[Name], metadata:Option[Seq[Metadata]]) extends SocialActivityInfo {
+case class SocialShareUrlActivityInfo(url: String, text: Option[String], @JsonScalaEnumeration(classOf[SocialChannelRef])channel: Option[SocialChannel], sharer: Option[Name], metadata:Option[Seq[Metadata]]) extends SocialActivityInfo {
   override val activityType = `social/share-url`
 }
 
-class SocialType
 
 object SocialType extends Enumeration {
   type SocialType = Value
   val LIKE, FOLLOW, SUBSCRIBE, PIN_IT, FAVORITE, OTHER = Value
 }
 
-case class SocialTracker(openId: SocialChannel, name: Option[Name], email: Option[String])
+case class SocialTracker(@JsonScalaEnumeration(classOf[SocialChannelRef])openId: Option[SocialChannel], name: Option[Name], email: Option[String])
 
-class SocialChannel
+class SocialChannelRef extends TypeReference[SocialChannel.type]
 
 object SocialChannel extends Enumeration {
   type SocialChannel = Value
-  val FACEBOOK, TWITTER, LINKEDIN, GOOGLE_PLUS, PINTEREST, TUMBLR, BLOGGER, WORDPRESS, OTHER = Value
+ val FACEBOOK, TWITTER, LINKEDIN, GOOGLE_PLUS, PINTEREST, TUMBLR, BLOGGER, WORDPRESS, OTHER = Value
 }

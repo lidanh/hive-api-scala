@@ -50,5 +50,15 @@ class ActivityInfoSerializationTest extends SpecificationWithJUnit {
       deserialized.activityInfo must beAnInstanceOf[AuthRegister]
       deserialized.activityInfo.asInstanceOf[AuthRegister].status must_== "ACTIVE"
     }
+
+    "handle enums as strings" in new ctx {
+      val json = s"""{"id":"$id","createdAt":"$createdAt","activityType":"social/comment","contactUpdate":{"name":{},"company":{}},"activityLocationUrl":"http://www.wix.com","activityDetails":{"summary":"test","additionalInfoUrl":"http://www.wix.com"},"activityInfo":{"text":"this is my comment this is my gun","channel":"TWITTER","metadata":[{"name":"foo","value":"bar"}],"commenter":{"openId":{"channel":"TWITTER"},"name":{"prefix":"sir","first":"mix","middle":"a","last":"lot","suffix":"Sr."},"email":"karenc@wix.com"}}}"""
+
+      val deserialized = JacksonObjectMapper.mapper.readValue(json, classOf[Activity])
+
+      deserialized.activityInfo must beAnInstanceOf[SocialCommentActivityInfo]
+      deserialized.activityInfo.asInstanceOf[SocialCommentActivityInfo].channel must beSome (SocialChannel.TWITTER)
+
+    }
   }
 }

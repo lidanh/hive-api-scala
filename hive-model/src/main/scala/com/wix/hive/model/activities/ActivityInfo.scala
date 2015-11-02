@@ -2,7 +2,7 @@ package com.wix.hive.model.activities
 
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.wix.hive.model.activities.ActivityType._
-import com.wix.hive.model.activities.common.{Metadata, Media, Variant}
+import com.wix.hive.model.activities.common.Metadata
 import com.wix.hive.model.contacts.ContactName
 import org.joda.time.DateTime
 
@@ -34,7 +34,9 @@ case class ContactSubscriptionForm(email: String, name: Option[ContactName], pho
   override val activityType = `contact/subscription-form`
 }
 
+case class Media(thumbnail: String)
 
+case class Variant(title: String, value: Option[String])
 
 
 
@@ -54,6 +56,7 @@ case class CartItem(id: String, sku: Option[String], title: String, quantity: In
                     currency: String, productLink: Option[String], weight: BigDecimal, formattedWeight: Option[String],
                     media: Media, variants: Seq[Variant], categories: Seq[String] = Nil, metadata: Seq[Metadata] = Nil)
 
+case class ItemMetadata(name: String, value: String)
 
 
 
