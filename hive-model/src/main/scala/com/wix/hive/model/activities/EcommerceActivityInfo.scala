@@ -11,8 +11,8 @@ import com.wix.hive.model.activities.common.Metadata
  */
 trait EcommerceActivityInfo extends ActivityInfo
 
-case class ECommerceAbandon (cartId: String,
-                             storeId: Int,
+case class ECommerceAbandon (cartId: Option[String],
+                             storeId: Option[Int],
                              storeName: Option[String],
                              items: Seq[Item]) extends EcommerceActivityInfo {
   override val activityType = `e_commerce/cart-abandon`
@@ -26,8 +26,8 @@ case class ECommerceCartAddItem( cartId: String,
 }
 
 case class ECommercePurchase(
-                              cartId: String,
-                              storeId: String,
+                              cartId: Option[String],
+                              storeId: Option[String],
                               orderId: Option[String],
                               items: Seq[CartItem],
                               payment: Payment,
@@ -40,16 +40,16 @@ case class ECommercePurchase(
   override val activityType = `e_commerce/purchase`
 }
 
-case class ECommerceCartCheckout( cartId: String,
-                                  storeId: Int,
+case class ECommerceCartCheckout( cartId: Option[String],
+                                  storeId: Option[Int],
                                   storeName: Option[String],
                                   items: Seq[Item]
                                   ) extends EcommerceActivityInfo{
   override val activityType = `e_commerce/cart-checkout`
 }
 
-case class ECommerceCartRemoveItem( cartId: String,
-                                    storeId: Int,
+case class ECommerceCartRemoveItem( cartId: Option[String],
+                                    storeId: Option[Int],
                                     storeName: String,
                                     item: Item) extends EcommerceActivityInfo {
   override val activityType = `e_commerce/cart-remove`
