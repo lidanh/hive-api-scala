@@ -11,7 +11,7 @@ import com.wix.hive.commands.activities._
 import com.wix.hive.commands.batch.ProcessBatch
 import com.wix.hive.commands.contacts._
 import com.wix.hive.commands.insights.InsightActivitySummary
-import com.wix.hive.commands.labels.{GetLabelById, GetLabels}
+import com.wix.hive.commands.labels._
 import com.wix.hive.commands.redirects.GetRedirects
 import com.wix.hive.commands.services.email.SendSingle
 import com.wix.hive.commands.services.{EmailProviders, SendEmail, ServiceDone}
@@ -119,8 +119,11 @@ trait SimplicatorHive {
       case c: GetSitePages.type => Match("/sites/site/pages")
       case c: GetSiteSettings.type => Match("/sites/site/settings")
       case c: Site.type => Match("/sites/site")
+      case c: CreateLabel => Match("/labels", method = RequestMethod.POST)
+      case c: UpdateLabelName => Match(s"/labels/${c.id}/name", method = RequestMethod.PUT)
       case c: GetLabelById => Match(s"/labels/${c.id}")
       case c: GetLabels => Match("/labels")
+      case c: AddLabelContacts => Match(s"/labels/${c.id}/contacts", method = RequestMethod.POST)
       case c: GetRedirects.type => Match("/redirects")
       case c: ProcessBatch => Match("/batch", method = RequestMethod.POST)
     }
