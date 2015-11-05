@@ -2,10 +2,12 @@ package com.wix.hive.infrastructure
 
 import java.net.URLEncoder
 
+import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.util.ISO8601Utils
 import com.github.tomakehurst.wiremock.client.WireMock.{aResponse, containing, equalTo, equalToJson, givenThat, matching, urlMatching, verify => wiremockVerify}
 import com.github.tomakehurst.wiremock.client.{MappingBuilder, RequestPatternBuilder, VerificationException}
-import com.github.tomakehurst.wiremock.http.RequestMethod
+import com.github.tomakehurst.wiremock.http.{Response, Request, RequestMethod}
+import com.sun.tools.classfile.Dependencies.Recorder
 import com.wix.hive.commands.HiveCommand
 import com.wix.hive.commands.activities._
 import com.wix.hive.commands.batch.ProcessBatch
@@ -16,11 +18,16 @@ import com.wix.hive.commands.redirects.GetRedirects
 import com.wix.hive.commands.services.email.SendSingle
 import com.wix.hive.commands.services.{EmailProviders, SendEmail, ServiceDone}
 import com.wix.hive.commands.sites.{GetSiteSettings, GetSitePages, Site}
+import com.wix.hive.infrastructure.JsonAs
 import com.wix.hive.json.JacksonObjectMapper.mapper
 import com.wix.hive.model.WixAPIErrorException
 import org.joda.time.DateTime
 import org.skyscreamer.jsonassert.JSONCompareMode
 
+import scala.collection.immutable.List
+import scala.collection.mutable
+import scala.concurrent.ExecutionContext
+import scala.reflect.ClassTag
 import scala.runtime.BoxedUnit
 
 trait SimplicatorHive {
@@ -155,4 +162,35 @@ trait SimplicatorHive {
   }
 
   private def urlEncode(str: String): String = URLEncoder.encode(str, "UTF-8")
-}
+
+  def RecordHiveCommands[T: ClassTag](execution: => Unit)(implicit ec: ExecutionContext): Recorder[T] = {
+    val recorder = new Recorder[T]
+    WiremockEnvironment.addListener(recorder.recordingListener)
+    execution
+    recorder
+  }
+
+  class Recorder[T: ClassTag] {
+    private val requests = List.newBuilder[T]
+
+    def recordingListener: (Request, Response) => Unit = (request, response) => {
+      try {
+        requests.synchronized {
+          requests += JsonAs[T](request.getBodyAsString)
+        }
+      } catch {
+        case _: JsonProcessingException => //Ignore commands that does not parse for defined type
+      }
+    }
+
+    def andPlay(player: (mutable.Iterable[T]) => Unit) = {
+      player(records)
+    }
+
+    def records: mutable.Iterable[T] = {
+      new mutable.Iterable[T] {
+        override def iterator: Iterator[T] = requests.result().iterator
+      }
+    }
+  }
+}Pull
