@@ -21,14 +21,13 @@ trait LabelsTestSupport {
   val label = Label(labelId, None, "New", None, 0, LabelTypes.`userDefined`)
   val createdLabel = CreatedLabel(labelId)
   val anotherLabel = Label(anotherLabelId, None, "Contacted Me", None, 1, LabelTypes.`userDefined`)
-  val contactId = "contact-id"
   val affectedContacts = AffectedContacts(affectedContacts = 1)
 
   val createLabelCommand = CreateLabel("New", None)
   val updateLabelNameCommand = UpdateLabelName(labelId, "New", new DateTime(2010, 1, 1, 0, 0))
   val getLabelByIdCommand = GetLabelById(labelId)
   val getLabelsCommand = GetLabels()
-  val addLabelContactsCommand = new AddLabelContacts(labelId, ContactDataType.CONTACTS, Seq(contactId))
+  val addLabelContactsCommand = new AddLabelContacts(labelId, ContactDataType.CONTACTS, Seq("contact-id"))
 }
 
 object LabelsTestSupport extends LabelsTestSupport
