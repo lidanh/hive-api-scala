@@ -7,7 +7,6 @@ import com.fasterxml.jackson.databind.util.ISO8601Utils
 import com.github.tomakehurst.wiremock.client.WireMock.{aResponse, containing, equalTo, equalToJson, givenThat, matching, urlMatching, verify => wiremockVerify}
 import com.github.tomakehurst.wiremock.client.{MappingBuilder, RequestPatternBuilder, VerificationException}
 import com.github.tomakehurst.wiremock.http.{Response, Request, RequestMethod}
-import com.sun.tools.classfile.Dependencies.Recorder
 import com.wix.hive.commands.HiveCommand
 import com.wix.hive.commands.activities._
 import com.wix.hive.commands.batch.ProcessBatch
@@ -18,7 +17,6 @@ import com.wix.hive.commands.redirects.GetRedirects
 import com.wix.hive.commands.services.email.SendSingle
 import com.wix.hive.commands.services.{EmailProviders, SendEmail, ServiceDone}
 import com.wix.hive.commands.sites.{GetSiteSettings, GetSitePages, Site}
-import com.wix.hive.infrastructure.JsonAs
 import com.wix.hive.json.JacksonObjectMapper.mapper
 import com.wix.hive.model.WixAPIErrorException
 import org.joda.time.DateTime
