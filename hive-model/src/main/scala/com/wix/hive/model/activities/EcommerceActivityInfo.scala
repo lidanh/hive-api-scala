@@ -1,9 +1,6 @@
 package com.wix.hive.model.activities
 
-import java.net.URL
-
 import com.wix.hive.model.activities.ActivityType._
-import com.wix.hive.model.activities.common.Metadata
 
 
 /**
@@ -14,14 +11,14 @@ trait EcommerceActivityInfo extends ActivityInfo
 case class ECommerceAbandon (cartId: Option[String],
                              storeId: Option[Int],
                              storeName: Option[String],
-                             items: Seq[Item]) extends EcommerceActivityInfo {
+                             items: Seq[CartItem]) extends EcommerceActivityInfo {
   override val activityType = `e_commerce/cart-abandon`
 }
 
 case class ECommerceCartAddItem( cartId: Option[String],
                                  storeId: Option[Int],
                                  storeName: String,
-                                 item: Item) extends EcommerceActivityInfo {
+                                 item: CartItem) extends EcommerceActivityInfo {
   override val activityType = `e_commerce/cart-add`
 }
 
@@ -59,7 +56,7 @@ case class ECommercePurchaseWithTemp(
 case class ECommerceCartCheckout( cartId: Option[String],
                                   storeId: Option[Int],
                                   storeName: Option[String],
-                                  items: Seq[Item]
+                                  items: Seq[CartItem]
                                   ) extends EcommerceActivityInfo{
   override val activityType = `e_commerce/cart-checkout`
 }
@@ -67,7 +64,7 @@ case class ECommerceCartCheckout( cartId: Option[String],
 case class ECommerceCartRemoveItem( cartId: Option[String],
                                     storeId: Option[Int],
                                     storeName: String,
-                                    item: Item) extends EcommerceActivityInfo {
+                                    item: CartItem) extends EcommerceActivityInfo {
   override val activityType = `e_commerce/cart-remove`
 
 }
@@ -75,21 +72,7 @@ case class ECommerceCartRemoveItem( cartId: Option[String],
 
 
 
-case class Item( id: String,
-                          sku: Option[String],
-                          title: String,
-                          quantity: Int,
-                          price: Option[java.math.BigDecimal],
-                          formattedPrice: Option[String],
-                          currency: String,
-                          productLink: Option[URL],
-                          weight: Option[java.math.BigDecimal],
-                          formattedWeight: Option[String],
-                          media: Option[Media],
-                          variants: Seq[Variant],
-                          `type`: Option[EcommerceItemType] = None,
-                          categories: Option[Seq[String]] = None,
-                          metadata: Option[Seq[Metadata]] = None)
+
 
 
 case class EcommerceVariant(title: String, value: Option[String])
