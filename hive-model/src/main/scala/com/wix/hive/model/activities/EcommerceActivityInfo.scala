@@ -40,8 +40,9 @@ case class ECommercePurchase(
 //for activity change purposes will be deleted after the change
 
 case class ECommercePurchaseWithTemp(
-                              cartId: Option[String],
-                              storeId: Option[String],
+                              cartId: String,
+                              storeId: String,
+                              storeName: Option[String],
                               orderId: Option[String],
                               items: Seq[CartItem],
                               payment: Payment,

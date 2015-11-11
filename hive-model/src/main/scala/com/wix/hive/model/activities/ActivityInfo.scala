@@ -47,7 +47,7 @@ case class Tax(total: BigDecimal, formattedTotal: Option[String])
 case class Shipping(total: BigDecimal, formattedTotal: Option[String])
 
 case class Payment(total: BigDecimal, subtotal: BigDecimal, formattedTotal: Option[String], formattedSubtotal: Option[String],
-                   currency: String, coupon: Option[Coupon], tax: Option[Tax], shipping: Shipping)
+                   currency: String, coupon: Option[Coupon], tax: Option[Tax], shipping: Option[Shipping])
 
 case class CartAddress(firstName: String, lastName: String, email: String, phone: String, country: String, countryCode: String,
                        region: String, regionCode: String, city: String, address1: String, address2: String, zip: String, company: String)
