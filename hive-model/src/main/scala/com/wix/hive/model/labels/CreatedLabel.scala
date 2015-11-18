@@ -1,3 +1,3 @@
-package com.wix.hive.commands.labels
+package com.wix.hive.model.labels
 
 case class CreatedLabel(labelId: String)
