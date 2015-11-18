@@ -1,7 +1,7 @@
 package com.wix.hive.drivers
 
 import com.wix.hive.commands.labels._
-import com.wix.hive.model.labels.{Label, LabelTypes, PagingLabelsResult}
+import com.wix.hive.model.labels.{CreatedLabel, Label, LabelTypes, PagingLabelsResult}
 import org.joda.time.DateTime
 import org.specs2.matcher.Matcher
 import org.specs2.matcher.Matchers._
