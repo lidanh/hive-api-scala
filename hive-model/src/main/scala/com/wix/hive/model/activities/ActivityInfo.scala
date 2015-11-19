@@ -47,6 +47,9 @@ case class Tax(total: BigDecimal, formattedTotal: Option[String])
 case class Shipping(total: BigDecimal, formattedTotal: Option[String])
 
 case class Payment(total: BigDecimal, subtotal: BigDecimal, formattedTotal: Option[String], formattedSubtotal: Option[String],
+                   currency: String, coupon: Option[Coupon], tax: Option[Tax], shipping: Shipping)
+
+case class PaymentTemp(total: BigDecimal, subtotal: BigDecimal, formattedTotal: Option[String], formattedSubtotal: Option[String],
                    currency: String, coupon: Option[Coupon], tax: Option[Tax], shipping: Option[Shipping])
 
 case class CartAddress(firstName: String, lastName: String, email: String, phone: String, country: String, countryCode: String,
@@ -135,7 +138,7 @@ case class SchedulerCancel(
 }
 
 case class Price(
-                  price: java.math.BigDecimal,
+                  price: scala.math.BigDecimal,
                   currency: String,
                   formattedPrice: Option[String]
                   )

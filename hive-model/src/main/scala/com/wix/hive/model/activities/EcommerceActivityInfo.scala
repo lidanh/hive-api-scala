@@ -39,13 +39,13 @@ case class ECommercePurchase(
 
 //for activity change purposes will be deleted after the change
 
-case class ECommercePurchaseWithTemp(
-                              cartId: String,
-                              storeId: String,
+case class ECommercePurchaseTemp(
+                              cartId: Option[String],
+                              storeId: Option[Int],
                               storeName: Option[String],
                               orderId: Option[String],
                               items: Seq[CartItem],
-                              payment: Payment,
+                              payment: PaymentTemp,
                               shippingAddress: Option[CartAddress],
                               billingAddress: Option[CartAddress],
                               paymentGateway: Option[String],
