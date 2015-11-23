@@ -128,7 +128,7 @@ trait SimplicatorHive {
       case c: UpdateLabelName => Match(s"/labels/${c.id}/name", method = RequestMethod.PUT)
       case c: GetLabelById => Match(s"/labels/${c.id}")
       case c: GetLabels => Match("/labels")
-      case c: AddLabelContacts => Match(s"/labels/${c.id}/contacts", method = RequestMethod.POST)
+      case c: AddContactsToLabel => Match(s"/labels/${c.id}/contacts", method = RequestMethod.POST)
       case c: GetRedirects.type => Match("/redirects")
       case c: ProcessBatch => Match("/batch", method = RequestMethod.POST)
     }

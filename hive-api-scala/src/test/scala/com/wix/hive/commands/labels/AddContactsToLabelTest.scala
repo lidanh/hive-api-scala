@@ -8,12 +8,12 @@ import org.specs2.mutable.SpecWithJUnit
 import org.specs2.specification.Scope
 
 
-class AddLabelContactsTest extends SpecWithJUnit with JsonMatchers with HiveMatchers {
+class AddContactsToLabelTest extends SpecWithJUnit with JsonMatchers with HiveMatchers {
 
   class Context extends Scope {
     val id = "label-id"
     val contactId = "contact-id"
-    val command = new AddLabelContacts(id = id, dataType = CONTACTS, ids = Seq(contactId))
+    val command = new AddContactsToLabel(id = id, dataType = CONTACTS, ids = Seq(contactId))
   }
 
   "createHttpRequestData" should {
