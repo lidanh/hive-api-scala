@@ -20,7 +20,7 @@ class AddLabelContactsTest extends SpecWithJUnit with JsonMatchers with HiveMatc
     "serialize to correct body" in new Context {
       mapper.writeValueAsString(command.body.get) must (
         /("dataType" -> "CONTACTS")
-          and /("ids") /# 0 / "contact-id"
+          and /("data") /# 0 / "contact-id"
         )
     }
   }

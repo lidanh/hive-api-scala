@@ -12,4 +12,4 @@ case class AddLabelContacts(id: String, dataType: ContactDataType, ids: Seq[Stri
 }
 
 
-case class AddLabelContactsData(dataType: ContactDataType, ids: Seq[String])
+case class AddLabelContactsData(dataType: ContactDataType, data: Seq[String])
