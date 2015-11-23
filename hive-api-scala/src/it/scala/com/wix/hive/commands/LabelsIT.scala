@@ -39,8 +39,8 @@ class LabelsIT extends HiveSimplicatorIT {
     }
 
     "add a contact to the label" in new ClientContext {
-      expect(app, addLabelContactsCommand)(affectedContacts)
-      client.execute(instance, addLabelContactsCommand) must haveAffectedContacts(be_==(1)).await
+      expect(app, addContactsToLabelCommand)(affectedContacts)
+      client.execute(instance, addContactsToLabelCommand) must haveAffectedContacts(be_==(1)).await
     }
   }
 }
