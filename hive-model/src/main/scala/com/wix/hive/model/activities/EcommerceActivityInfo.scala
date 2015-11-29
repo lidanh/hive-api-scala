@@ -41,7 +41,7 @@ case class ECommercePurchase(
 
 case class ECommercePurchaseTemp(
                               cartId: Option[String],
-                              storeId: Option[Int],
+                              storeId: Option[String],
                               storeName: Option[String],
                               orderId: Option[String],
                               items: Seq[CartItem],
