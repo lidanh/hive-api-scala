@@ -17,15 +17,15 @@ trait SocialActivityInfo extends ActivityInfo {
 
 }
 
-case class SocialTrackActivityInfo(@JsonScalaEnumeration(classOf[SocialTypeRef])`type`: Option[SocialType], tracker: Option[SocialTracker], metadata: Option[Metadata]) extends SocialActivityInfo {
+case class SocialTrackActivityInfo(@JsonScalaEnumeration(classOf[SocialTypeRef])`type`: SocialType, tracker: Option[SocialTracker], metadata: Seq[Metadata]) extends SocialActivityInfo {
   override val activityType = `social/track`
 }
 
-case class SocialCommentActivityInfo(text: String, @JsonScalaEnumeration(classOf[SocialChannelWithSiteRef])channel: Option[SocialChannelWithSite], metadata: Option[Seq[Metadata]], commenter: Option[SocialTracker]) extends SocialActivityInfo {
+case class SocialCommentActivityInfo(text: String, @JsonScalaEnumeration(classOf[SocialChannelWithSiteRef])channel: Option[SocialChannelWithSite], metadata: Seq[Metadata], commenter: Option[SocialTracker]) extends SocialActivityInfo {
   override val activityType = `social/comment`
 }
 
-case class SocialShareUrlActivityInfo(url: String, text: Option[String], @JsonScalaEnumeration(classOf[SocialChannelRef])channel: Option[SocialChannel], sharer: Option[Name], metadata:Option[Seq[Metadata]]) extends SocialActivityInfo {
+case class SocialShareUrlActivityInfo(url: String, text: Option[String], @JsonScalaEnumeration(classOf[SocialChannelRef])channel: SocialChannel, sharer: Option[SocialSharer], metadata:Seq[Metadata]) extends SocialActivityInfo {
   override val activityType = `social/share-url`
 }
 
@@ -37,6 +37,8 @@ object SocialType extends Enumeration {
   type SocialType = Value
   val LIKE, FOLLOW, SUBSCRIBE, PIN_IT, FAVORITE, OTHER = Value
 }
+
+case class SocialSharer (name: Option[Name], email: Option[String])
 
 case class SocialTracker(openId: Option[SocialOpenId], name: Option[Name], email: Option[String])
 
