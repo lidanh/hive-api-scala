@@ -29,7 +29,7 @@ class InstanceDecoderTest
     val signedInstance = signAndEncodeInstance(instance, key)
 
     val decoderWithSimpleKey = new InstanceDecoder("11111111-1111-1111-1111-111111111111")
-    val instanceWihtoutSignetAt = "7_MQI28JN_XAAwU_6QPgENbpJzFlrJMcgq6n-rGSqac.eyJpbnN0YW5jZUlkIjoiNDQwYmNjZWYtNTFjNi00NTY3LTliZmUtZGUxYWZiMzk5MTg4IiwidWlkIjoiNTE1MTJjYjktZDUzOC00ZmJiLWFmY2ItNmY2MTc1NmU3N2Q5IiwicGVybWlzc2lvbnMiOiJPV05FUiIsInZlbmRvclByb2R1Y3RJZCI6IlByZW1pdW0xIiwiZGVtb01vZGUiOmZhbHNlLCJvcmlnaW5JbnN0YW5jZUlkIjoiYzdhM2M4NjktN2Y5Ny00NjFjLWEwZGUtODcwNTViZGY4ZTJmIiwiYWlkIjoiYzEwYzYxNTctYWZjYS00MmFhLWE0ZWYtMjNkNTM2ZDEzODhhIiwic2l0ZU93bmVySWQiOiJmNjIyYzgwZi04NGY2LTRjODMtOTZiYS1jOGYyZTk4ZDZlYjUifQ"
+    val instanceWithoutSignetAt = "7_MQI28JN_XAAwU_6QPgENbpJzFlrJMcgq6n-rGSqac.eyJpbnN0YW5jZUlkIjoiNDQwYmNjZWYtNTFjNi00NTY3LTliZmUtZGUxYWZiMzk5MTg4IiwidWlkIjoiNTE1MTJjYjktZDUzOC00ZmJiLWFmY2ItNmY2MTc1NmU3N2Q5IiwicGVybWlzc2lvbnMiOiJPV05FUiIsInZlbmRvclByb2R1Y3RJZCI6IlByZW1pdW0xIiwiZGVtb01vZGUiOmZhbHNlLCJvcmlnaW5JbnN0YW5jZUlkIjoiYzdhM2M4NjktN2Y5Ny00NjFjLWEwZGUtODcwNTViZGY4ZTJmIiwiYWlkIjoiYzEwYzYxNTctYWZjYS00MmFhLWE0ZWYtMjNkNTM2ZDEzODhhIiwic2l0ZU93bmVySWQiOiJmNjIyYzgwZi04NGY2LTRjODMtOTZiYS1jOGYyZTk4ZDZlYjUifQ"
 
 
     def beEmptySet: Matcher[Set[String]] = beEmpty
@@ -75,7 +75,7 @@ class InstanceDecoderTest
     }
 
     "meaningful error when no signedAt field" in new ctx {
-      decoderWithSimpleKey.decode(instanceWihtoutSignetAt) must beFailedTry.withThrowable[ExpiredInstanceException]
+      decoderWithSimpleKey.decode(instanceWithoutSignetAt) must beFailedTry.withThrowable[ExpiredInstanceException]
     }
   }
 }
