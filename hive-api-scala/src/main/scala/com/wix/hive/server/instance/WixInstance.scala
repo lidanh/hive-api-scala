@@ -38,7 +38,7 @@ case class WixInstance(instanceId: UUID,
                        @JsonProperty("vendorProductId") premiumPackageId: Option[String],
                        demoMode: Boolean,
                        @JsonProperty("siteOwnerId") ownerId: UUID,
-                      //TODO: Create Builder for tests and remote default value
+                      //TODO: Create Builder for tests and remote default value (maybe InstanceEncoderSupport but with params and not wixInstance)
                        @JsonProperty("originInstanceId") originInstanceId: Option[UUID] = None)
 
 // For backward compatibility this field is a `string` and not an `array `
