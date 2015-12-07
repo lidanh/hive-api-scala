@@ -38,7 +38,7 @@ case class WixInstance(instanceId: UUID,
                        @JsonProperty("vendorProductId") premiumPackageId: Option[String],
                        demoMode: Boolean,
                        @JsonProperty("siteOwnerId") ownerId: UUID,
-                       originInstanceId: Option[UUID])
+                       @JsonProperty("originInstanceId") originInstanceId: Option[UUID])
 
 // For backward compatibility this field is a `string` and not an `array `
 class CustomPermissionsDeserializer extends JsonDeserializer[Set[String]] {

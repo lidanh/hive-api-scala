@@ -26,6 +26,17 @@ class InstanceDecoderScope extends Scope {
   val ownerId = UUID.fromString("c71abb54-25a9-4e98-a9ea-66e7681983fb")
   val originInstanceId = Some(UUID.fromString("53830c86-68b4-4089-a303-8be7f445913d"))
 
+  val instance = WixInstance(
+    instanceId = instanceId,
+    signedAt = new DateTime(signDate).withZone(DateTimeZone.UTC),
+    userId = Some(uid),
+    permissions = Set(permission),
+    userIp = ipAndPort,
+    premiumPackageId = Some(premiumPackage),
+    demoMode = false,
+    ownerId = ownerId,
+    originInstanceId = originInstanceId)
+
   val mockito = new Mockito {}
   import mockito._
 

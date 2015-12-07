@@ -16,17 +16,6 @@ class InstanceDecoderTest
 
   class ctx extends InstanceDecoderScope with InstanceEncoderSupport {
 
-    val instance = WixInstance(
-      instanceId = instanceId,
-      signedAt = new DateTime(signDate).withZone(DateTimeZone.UTC),
-      userId = Some(uid),
-      permissions = Set(permission),
-      userIp = ipAndPort,
-      premiumPackageId = Some(premiumPackage),
-      demoMode = false,
-      ownerId = ownerId,
-      originInstanceId = originInstanceId)
-
     val signedInstance = signAndEncodeInstance(instance, key)
 
     val decoderWithSimpleKey = new InstanceDecoder("11111111-1111-1111-1111-111111111111")

@@ -17,19 +17,18 @@ class InstanceDeserializerTest extends Specification with MatcherMacros {
 
   "WixInstance deserialization" should {
     "handle permissions `null`" in new ctx {
-      val instance = generateInstance(permissions = "null").getBytes
-      deserializer.deserialize(instance) must matchA[WixInstance].permissions(empty)
+      val inst = generateInstance(permissions = "null").getBytes
+      deserializer.deserialize(inst) must matchA[WixInstance].permissions(empty)
     }
 
     "handle userId is `null`" in new ctx {
-      val instance = generateInstance(userId = None).getBytes
-      deserializer.deserialize(instance) must matchA[WixInstance].userId(beNone)
+      val inst = generateInstance(userId = None).getBytes
+      deserializer.deserialize(inst) must matchA[WixInstance].userId(beNone)
     }
 
     "handle premiumPackage is `null`" in new ctx {
-      val instance = generateInstance(premiumPackageId = None).getBytes
-      deserializer.deserialize(instance) must matchA[WixInstance].premiumPackageId(beNone)
+      val inst = generateInstance(premiumPackageId = None).getBytes
+      deserializer.deserialize(inst) must matchA[WixInstance].premiumPackageId(beNone)
     }
   }
-
 }

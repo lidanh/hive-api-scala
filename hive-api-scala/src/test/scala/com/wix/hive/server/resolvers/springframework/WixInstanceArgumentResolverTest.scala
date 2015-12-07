@@ -2,7 +2,6 @@ package com.wix.hive.server.resolvers.springframework
 
 import com.wix.hive.drivers.InstanceEncoderSupport
 import com.wix.hive.server.instance.{InstanceDecoderScope, WixInstance}
-import org.joda.time.{DateTime, DateTimeZone}
 import org.specs2.mutable.SpecificationWithJUnit
 import org.springframework.core.MethodParameter
 import org.springframework.mock.web.MockHttpServletRequest
@@ -49,17 +48,6 @@ class WixInstanceArgumentResolverTest extends SpecificationWithJUnit {
       val mavContainer = new ModelAndViewContainer()
 
       val request = new ServletWebRequest(new MockHttpServletRequest())
-
-      val instance = WixInstance(
-        instanceId = instanceId,
-        signedAt = new DateTime(signDate).withZone(DateTimeZone.UTC),
-        userId = Some(uid),
-        permissions = Set(permission),
-        userIp = ipAndPort,
-        premiumPackageId = Some(premiumPackage),
-        demoMode = false,
-        ownerId = ownerId,
-        originInstanceId = originInstanceId)
 
       val signedInstance = signAndEncodeInstance(instance, key)
       val invalidInstance = "invalid-instance"

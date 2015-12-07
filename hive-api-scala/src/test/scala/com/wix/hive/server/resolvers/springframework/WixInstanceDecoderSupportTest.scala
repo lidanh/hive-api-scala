@@ -1,11 +1,9 @@
 package com.wix.hive.server.resolvers.springframework
 
-import java.net.InetSocketAddress
-import java.util.UUID
 import javax.servlet.ServletException
 
 import com.wix.hive.drivers.InstanceEncoderSupport
-import com.wix.hive.server.instance.WixInstance
+import com.wix.hive.server.instance.{InstanceDecoderScope, WixInstance}
 import org.joda.time.{DateTime, DateTimeZone}
 import org.junit.Assert.{assertTrue, fail}
 import org.junit.runner.RunWith
@@ -47,16 +45,9 @@ class WixInstanceDecoderSupportTest extends InstanceEncoderSupport {
       .webAppContextSetup(webApplicationContext)
       .build
 
-    instance = WixInstance(
-      instanceId = UUID.randomUUID(),
-      signedAt = DateTime.now.withZone(DateTimeZone.UTC),
-      userId = Some(UUID.randomUUID().toString),
-      permissions = Set("OWNER"),
-      userIp = InetSocketAddress.createUnresolved("5.102.254.181", 62834),
-      premiumPackageId = Some("Premium1"),
-      demoMode = false,
-      ownerId = UUID.randomUUID(),
-      originInstanceId = Some(UUID.randomUUID()))
+    val scope = new InstanceDecoderScope()
+
+    instance = scope.instance.copy(signedAt = DateTime.now.withZone(DateTimeZone.UTC))
   }
 
   @Test
