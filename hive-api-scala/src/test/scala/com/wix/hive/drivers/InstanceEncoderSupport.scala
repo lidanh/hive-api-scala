@@ -29,7 +29,8 @@ case class WixInstanceForSerialization(instanceId: UUID,
                                        ipAndPort: String,
                                        vendorProductId: Option[String],
                                        demoMode: Boolean,
-                                       siteOwnerId: UUID)
+                                       siteOwnerId: UUID,
+                                       originInstanceId: Option[UUID])
 
 object WixInstanceForSerialization {
   def from(wixInstance: WixInstance): WixInstanceForSerialization =
@@ -41,5 +42,6 @@ object WixInstanceForSerialization {
       ipAndPort = s"${wixInstance.userIp.getHostString}/${wixInstance.userIp.getPort}",
       vendorProductId = wixInstance.premiumPackageId,
       demoMode = wixInstance.demoMode,
-      siteOwnerId = wixInstance.ownerId)
+      siteOwnerId = wixInstance.ownerId,
+      originInstanceId = wixInstance.originInstanceId)
 }

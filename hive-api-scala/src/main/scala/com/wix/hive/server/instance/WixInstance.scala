@@ -28,6 +28,7 @@ import scala.util.Try
  * @param premiumPackageId The Premium Package ID, as was entered in the Dev Center during the app registration process. (If Premium)
  * @param demoMode
  * @param ownerId
+ * @param originInstanceId
  */
 case class WixInstance(instanceId: UUID,
                        @JsonProperty("signDate") signedAt: DateTime,
@@ -36,7 +37,8 @@ case class WixInstance(instanceId: UUID,
                        @JsonProperty("ipAndPort") @JsonDeserialize(using = classOf[CustomIpDeserializer]) userIp: InetSocketAddress,
                        @JsonProperty("vendorProductId") premiumPackageId: Option[String],
                        demoMode: Boolean,
-                       @JsonProperty("siteOwnerId") ownerId: UUID)
+                       @JsonProperty("siteOwnerId") ownerId: UUID,
+                       originInstanceId: Option[UUID])
 
 // For backward compatibility this field is a `string` and not an `array `
 class CustomPermissionsDeserializer extends JsonDeserializer[Set[String]] {

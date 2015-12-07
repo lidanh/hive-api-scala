@@ -58,7 +58,8 @@ class WixInstanceArgumentResolverTest extends SpecificationWithJUnit {
         userIp = ipAndPort,
         premiumPackageId = Some(premiumPackage),
         demoMode = false,
-        ownerId = ownerId)
+        ownerId = ownerId,
+        originInstanceId = originInstanceId)
 
       val signedInstance = signAndEncodeInstance(instance, key)
       val invalidInstance = "invalid-instance"

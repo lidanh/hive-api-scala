@@ -24,6 +24,7 @@ class InstanceDecoderScope extends Scope {
   val ipAndPort = InetSocketAddress.createUnresolved(ip, port)
   val demoMode = "false"
   val ownerId = UUID.fromString("c71abb54-25a9-4e98-a9ea-66e7681983fb")
+  val originInstanceId = Some(UUID.fromString("53830c86-68b4-4089-a303-8be7f445913d"))
 
   val mockito = new Mockito {}
   import mockito._

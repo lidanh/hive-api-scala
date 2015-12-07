@@ -55,7 +55,8 @@ class WixInstanceDecoderSupportTest extends InstanceEncoderSupport {
       userIp = InetSocketAddress.createUnresolved("5.102.254.181", 62834),
       premiumPackageId = Some("Premium1"),
       demoMode = false,
-      ownerId = UUID.randomUUID())
+      ownerId = UUID.randomUUID(),
+      originInstanceId = Some(UUID.randomUUID()))
   }
 
   @Test
