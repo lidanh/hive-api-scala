@@ -22,7 +22,7 @@ trait InstanceEncoderSupport {
 
 }
 
-private[drivers] case class WixInstanceForSerialization(instanceId: UUID,
+private[hive] case class WixInstanceForSerialization(instanceId: UUID,
                                        signDate: DateTime,
                                        uid: Option[String],
                                        permissions: String,
@@ -32,7 +32,7 @@ private[drivers] case class WixInstanceForSerialization(instanceId: UUID,
                                        siteOwnerId: UUID,
                                        originInstanceId: Option[UUID])
 
-private[drivers] object WixInstanceForSerialization {
+private[hive] object WixInstanceForSerialization {
   def from(wixInstance: WixInstance): WixInstanceForSerialization =
     WixInstanceForSerialization(
       instanceId = wixInstance.instanceId,
