@@ -6,6 +6,6 @@ class LabelTypesRef extends TypeReference[LabelTypes.type]
 
 object LabelTypes extends Enumeration {
   type LabelType = Value
-  val `system` = Value("system")
-  val `userDefined` = Value("userDefined")
+  val `system` = Value("SYSTEM")
+  val `userDefined` = Value("USER_DEFINED")
 }
