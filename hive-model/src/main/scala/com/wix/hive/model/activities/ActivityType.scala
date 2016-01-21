@@ -29,4 +29,6 @@ object ActivityType extends Enumeration {
   val `social/comment` = Value("social/comment")
   val `social/share-url` = Value("social/share-url")
   val `social/track` = Value("social/track")
+  val `hotels/purchase` = Value("hotels/purchase")
+  val `hotels/reservation` = Value("hotels/reservation")
 }

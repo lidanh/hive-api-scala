@@ -37,7 +37,9 @@ object Activity {
     `scheduler/confirmation` -> classOf[SchedulerConfirmation],
     `social/comment` -> classOf[SocialCommentActivityInfo],
     `social/share-url` -> classOf[SocialShareUrlActivityInfo],
-    `social/track` -> classOf[SocialTrackActivityInfo]
+    `social/track` -> classOf[SocialTrackActivityInfo],
+    `hotels/reservation` -> classOf[HotelsReservation],
+    `hotels/purchase` -> classOf[HotelsPurchase]
   )
 
   @JsonCreator
