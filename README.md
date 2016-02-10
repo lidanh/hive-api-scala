@@ -21,7 +21,7 @@ to **obtain** your **APP_KEY** and **APP_SECRET**
 <dependency>
     <groupId>com.wix.hive</groupId>
     <artifactId>hive-api-scala</artifactId>
-    <version>1.3.0-SNAPSHOT</verseion>
+    <version>1.3.0-SNAPSHOT</version>
 </dependency>
 ```
 
