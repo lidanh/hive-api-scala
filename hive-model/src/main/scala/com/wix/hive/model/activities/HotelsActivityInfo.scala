@@ -15,7 +15,7 @@ case class HotelsReservation(source: Source,
 }
 
 case class HotelsPurchase() extends ActivityInfo {
-  override def activityType: ActivityType = `hotels/reservation`
+  override def activityType: ActivityType = `hotels/purchase`
 }
 
 case class Guests(total: Int, adults: Int, children: Int)

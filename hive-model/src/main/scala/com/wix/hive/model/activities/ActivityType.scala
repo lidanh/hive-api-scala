@@ -31,4 +31,5 @@ object ActivityType extends Enumeration {
   val `social/track` = Value("social/track")
   val `hotels/purchase` = Value("hotels/purchase")
   val `hotels/reservation` = Value("hotels/reservation")
+  val `messaging/email` = Value("messaging/email")
 }
