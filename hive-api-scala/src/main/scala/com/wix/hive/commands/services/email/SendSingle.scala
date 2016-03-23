@@ -10,6 +10,7 @@ import com.wix.hive.commands.services.email.RecipientType.RecipientType
  * User: maximn
  * Date: 2/14/15
  */
+@deprecated("This service is not supported anymore", "Mar 2016")
 case class SendSingle(correlationId: String,
                       to: Seq[ToMailRecipient],
                       mailHeaders: MailHeaders,
