@@ -17,8 +17,10 @@ trait WixInstanceDecoderSupport {
 
   def wixInstanceQueryParamName = "instance"
 
+  def considerExpiredAfter = InstanceDecoder.DefaultExpirationDuration
+
   @Bean
-  def instanceDecoder = new InstanceDecoder(wixInstanceSecretKey)
+  def instanceDecoder = new InstanceDecoder(wixInstanceSecretKey, considerExpiredAfter)
 
   @Bean
   def instanceArgumentResolver = new WixInstanceArgumentResolver(
